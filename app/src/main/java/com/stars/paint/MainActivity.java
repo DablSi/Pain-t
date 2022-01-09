@@ -21,9 +21,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        one = findViewById(R.id.textView);
-        two = findViewById(R.id.textView2);
-
         SensorData sensData = new SensorData(this);
+        MicrophoneAndColor.startRecorder();
     }
 }
