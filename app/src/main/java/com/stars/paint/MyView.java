@@ -43,11 +43,11 @@ public class MyView extends View {
     }
 
     protected void onDraw(Canvas canvas) {
-//        paint.setStrokeWidth(Data.proximity);
-//            paint.setColor(MicrophoneAndColor.chooseColor(MicrophoneAndColor.soundDb()));
-        paint.setColor(Color.BLACK);
-        list.add(new int[]{vX, vY, vX + sX, vY + sY});
+        int color = MicrophoneAndColor.chooseColor(MicrophoneAndColor.soundDb());
+        list.add(new int[]{vX, vY, vX + sX, vY + sY, (int) Data.proximity, color});
         for (int[] i : list) {
+            paint.setStrokeWidth(i[4]);
+            paint.setColor(i[5]);
             canvas.drawLine(i[0], i[1], i[2], i[3], paint);
         }
         vX = vX + sX;
