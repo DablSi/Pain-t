@@ -7,20 +7,21 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity{
 
-    public ImageView cursor;
+    public static TextView one, two;
+
+    private SensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        cursor = findViewById(R.id.cursor);
 
         SensorData sensData = new SensorData(this);
+        MicrophoneAndColor.startRecorder();
     }
 }

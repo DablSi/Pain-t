@@ -22,6 +22,7 @@ public class MyView extends View {
         paint.setStrokeWidth(Data.size);
 
         while (true) {
+            paint.setColor(MicrophoneAndColor.chooseColor(MicrophoneAndColor.soundDb(MicrophoneAndColor.getAmplitude())));
             canvas.drawLine(vX, vY, sX, sY, paint);
             vX = sX;
             vY = sY;
