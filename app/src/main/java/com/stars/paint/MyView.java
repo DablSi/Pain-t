@@ -9,12 +9,6 @@ import android.view.View;
 
 
 public class MyView extends View {
-    private String color; // хранится цвет
-    private static float x; // координаты для начала
-    private static float y;
-    private static float sX; // координаты для остановки
-    private static float sY;
-
     public MyView(Context context) {
         super(context);
     }
@@ -22,23 +16,18 @@ public class MyView extends View {
 
     protected void onDraw(Canvas canvas) {
         Paint paint = new Paint();
-        this.x = 160;
-        this.y = 100;
-        this.sX=0;
-        this.sY=0;
-        color = onSensorChanged(); // функция возвращающая цвет
-        paint.setColor(Integer.parseInt(color));
+        Data data = new Data();
+        float vX=160, vY=100;
+        float sX=0,sY=0;
+        paint.setColor(data.color);
+
         while(true){
-        canvas.drawLine(x,y,sX,sY,paint);
-        this.x=sX;
-        this.y=sY;
-        this.sX=x;
-        this.sY=y;
+            canvas.drawLine(vX,vY,sX,sY,paint);
+            vX=sX;
+            vY=sY;
+            sX=data.x;
+            sY=data.y;
 
+        }
     }
-    }
-
-
-
-
 }
