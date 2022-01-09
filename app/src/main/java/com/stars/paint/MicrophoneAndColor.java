@@ -1,12 +1,23 @@
 package com.stars.paint;
 
+import android.content.Intent;
 import android.media.MediaRecorder;
 import android.graphics.Color;
 import android.media.MediaRecorder;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.Settings;
+
+import java.io.File;
+import java.io.IOException;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class MicrophoneAndColor {
 
     public static MediaRecorder mRecorder;
+    public static final int RECORD_AUDIO = 0;
+
 
     public static void startRecorder() {
         if (mRecorder == null) {
@@ -14,7 +25,13 @@ public class MicrophoneAndColor {
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mRecorder.setOutputFile("/dev/null");
+            File outputFile = null;
+            try {
+                outputFile = File.createTempFile("sound", ".3gp", Environment.getExternalStorageDirectory());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mRecorder.setOutputFile(outputFile.getPath());
             try {
                 mRecorder.prepare();
             } catch (java.io.IOException ioe) {
@@ -39,8 +56,8 @@ public class MicrophoneAndColor {
         }
     }
 
-    public static double soundDb(double ampl) {
-        return 20 * Math.log10(getAmplitude() / ampl);
+    public static double soundDb() {
+        return 20 * Math.log10(getAmplitude());
     }
 
     public static double getAmplitude() {
@@ -63,6 +80,6 @@ public class MicrophoneAndColor {
         } else if (amplitude >= 56 && amplitude <= 65) {
             return Color.MAGENTA;
         }
-        return Color.WHITE;
+        return Color.BLACK;
     }
 }
