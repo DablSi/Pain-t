@@ -24,6 +24,10 @@ public class MyView extends View {
         while (true) {
             paint.setColor(MicrophoneAndColor.chooseColor(MicrophoneAndColor.soundDb(MicrophoneAndColor.getAmplitude())));
             canvas.drawLine(vX, vY, sX, sY, paint);
+
+            MainActivity.layoutParams.leftMargin = (int)sY;
+            MainActivity.layoutParams.topMargin = (int)sX;
+
             vX = sX;
             vY = sY;
             sX = Data.x;
