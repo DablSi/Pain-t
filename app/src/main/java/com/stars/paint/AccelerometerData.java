@@ -7,7 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-public class AccelerometerData extends MainActivity implements SensorEventListener {
+public class AccelerometerData implements SensorEventListener {
 
     private SensorManager sensorManager;
 
@@ -23,8 +23,8 @@ public class AccelerometerData extends MainActivity implements SensorEventListen
     public float x;
     public float y;
 
-    AccelerometerData() {
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+    AccelerometerData(Context context) {
+        sensorManager = (SensorManager) context.getSystemService(context.SENSOR_SERVICE);
         sensorManager.registerListener(this,
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
@@ -37,9 +37,6 @@ public class AccelerometerData extends MainActivity implements SensorEventListen
             // assign directions
             x = event.values[0];
             y = event.values[1];
-
-            one.setText(Float.toString(x));
-            two.setText(Float.toString(y));
         }
     }
 
