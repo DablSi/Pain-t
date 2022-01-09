@@ -20,6 +20,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private SensorManager sensorManager;
     public void askForPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MyView myView = new MyView(this);
         setContentView(myView);
+        getSupportActionBar().hide();
         askForPermissions();
         SensorData sensData = new SensorData(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {

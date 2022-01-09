@@ -43,6 +43,7 @@ public class MyView extends View {
     }
 
     protected void onDraw(Canvas canvas) {
+        canvas.drawColor(Color.WHITE);
         int color = MicrophoneAndColor.chooseColor(MicrophoneAndColor.soundDb());
         list.add(new int[]{vX, vY, vX + sX, vY + sY, (int) Data.proximity, color});
         for (int[] i : list) {

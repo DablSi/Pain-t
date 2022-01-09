@@ -7,7 +7,9 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
@@ -69,7 +71,9 @@ public class MicrophoneAndColor {
     }
 
     public static int chooseColor(double amplitude) {
-        if (amplitude >= 15 && amplitude <= 25) {
+        amplitude -= 40;
+        Log.d("Color", Double.toString(amplitude));
+        if (amplitude <= 25) {
             return Color.RED;
         } else if (amplitude >= 26 && amplitude <= 35) {
             return Color.YELLOW;
