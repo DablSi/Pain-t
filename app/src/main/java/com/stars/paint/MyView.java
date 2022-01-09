@@ -10,6 +10,8 @@ import android.view.View;
 
 import java.util.LinkedList;
 
+import static com.stars.paint.MicrophoneAndColor.getFrequency;
+
 
 public class MyView extends View {
     Paint paint = new Paint();
@@ -29,7 +31,7 @@ public class MyView extends View {
 
     class Timer extends CountDownTimer {
         public Timer() {
-            super(Integer.MAX_VALUE, 10);
+            super(Integer.MAX_VALUE, 20);
         }
 
         @Override
@@ -45,6 +47,7 @@ public class MyView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
         int color = MicrophoneAndColor.chooseColor(MicrophoneAndColor.soundDb());
+        color = Color.argb(getFrequency(), Color.red(color), Color.green(color), Color.blue(color));
         list.add(new int[]{vX, vY, vX + sX, vY + sY, (int) Data.proximity, color});
         for (int[] i : list) {
             paint.setStrokeWidth(i[4]);
